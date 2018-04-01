@@ -1,0 +1,51 @@
+---
+title: "Background"
+author: "Matthew Dick & Kane Maxwell"
+date: "`r Sys.Date()`"
+output:
+  md_document:
+    variant: markdown_github
+bibliography: lastools.bib
+  
+---
+
+##About lastools
+
+'lastools' is an R package for reading and writing [version 1.2](http://www.cwls.org/wp-content/uploads/2014/09/LAS12_Standards.txt) and [version 2.0](http://www.cwls.org/wp-content/uploads/2017/02/Las2_Update_Feb2017.pdf) Log ASCII Standard (LAS) files (@las_spec_v1, @las_spec_v2) and for performing common functions on LAS files including:
+
+* version conversion
+
+* depth conversion
+
+* merging
+
+* visualizing/plotting
+
+* re-sampling/filtering 
+
+* bulk loading to R data.table
+
+While the Canadian Well Logging Society provides free software called [LasApps](http://www.cwls.org/wp-content/uploads/2017/02/CWLS_LasApps_v2_4_14.msi) (@las_cws_front_page)  and a Python package called [lasio](http://pythonhosted.org/lasio/index.html) (@lasio) exists to perform similar functions; at time of writing no R package existed for reading and manipulating LAS files.
+
+The aim of lastools is to provide functionality for reading and manipulating LAS files in the R environment and to provide additional unique functionality not found in existing alternative packages/libraries/software.
+
+##LAS Data 
+
+###Las file
+
+A LAS file is a standardized, structured ASCII file containing header information and log curve data derived from the continuous collection of (usually geophysical) measurements from a borehole or well (@reeves). They are often termed wireline log LAS files and have the file extension ".las". They are _distinct_ from 'lidar' LAS files which are  'industry-standard binary format files for storing [airborne lidar data](http://desktop.arcgis.com/en/arcmap/10.3/manage-data/las-dataset/what-is-a-las-dataset-.htm). 
+
+The LAS standard was introduced by the Canadian Well Logging Society in 1989 and to date consists of 3 Versions (version 1.2 (1989), 2.0 (1992) & 3.0 (1999)) (@las_preamble). Version 2.0 replaced inconsistencies in version 1.2 while version 3.0 clarified some of the poorly defined specifications of LAS 2.0 and provides expanded data storage capabilities (@las_spec_v1, @las_spec_v2, @las_spec_v3). Despite version 3.0 being the 'latest' version, its implementation and usage has been extremely limited (@las_preamble). Following this, the package lastools only provides support for LAS file versions 1.2 & 2.0.  
+
+The exact standards and structure/s for each LAS file type can be accessed via the below links (and/or from the embedded hyperlinks elsewhere):
+
+[Las Standard 1.2](http://www.cwls.org/wp-content/uploads/2014/09/LAS12_Standards.txt)
+
+[Las Standard 2.0](http://www.cwls.org/wp-content/uploads/2017/02/Las2_Update_Feb2017.pdf)
+
+[Las Standard 3.0](http://www.cwls.org/wp-content/uploads/2014/09/LAS_3_File_Structure.pdf)
+
+##References
+
+
+
