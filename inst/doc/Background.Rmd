@@ -1,0 +1,135 @@
+---
+title: "Background"
+author: "Matthew Dick & Kane Maxwell"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    number_sections: false
+    toc_depth: 5
+bibliography: lastools.bib
+  
+vignette: >
+  %\VignetteIndexEntry{Background}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+##About lastools
+
+'lastools' is an R package for reading and writing [version 1.2](http://www.cwls.org/wp-content/uploads/2014/09/LAS12_Standards.txt) and [version 2.0](http://www.cwls.org/wp-content/uploads/2017/02/Las2_Update_Feb2017.pdf) Log ASCII Standard (LAS) files (@las_spec_v1, @las_spec_v2) and for performing common functions on LAS files including:
+
+* version conversion
+
+* depth conversion
+
+* merging
+
+* visualizing/plotting
+
+* re-sampling/filtering 
+
+* bulk loading to R data.table
+
+While the Canadian Well Logging Society provides free software called [LasApps](http://www.cwls.org/wp-content/uploads/2017/02/CWLS_LasApps_v2_4_14.msi) (@las_cws_front_page)  and a Python package called [lasio](http://pythonhosted.org/lasio/index.html) (@lasio) exists to perform similar functions; at time of writing no R package existed for reading and manipulating LAS files.
+
+The aim of lastools is to provide functionality for reading and manipulating LAS files in the R environment and to provide additional unique functionality not found in existing alternative packages/libraries/software.
+
+##LAS Data 
+
+###Las file
+
+A LAS file is a standardized, structured ASCII file containing header information and log curve data derived from the continuous collection of (usually geophysical) measurements from a borehole or well (@reeves). They are often termed wireline log LAS files and have the file extension ".las". They are _distinct_ from 'lidar' LAS files which are  'industry-standard binary format files for storing [airborne lidar data](http://desktop.arcgis.com/en/arcmap/10.3/manage-data/las-dataset/what-is-a-las-dataset-.htm). 
+
+The LAS standard was introduced by the Canadian Well Logging Society in 1989 and to date consists of 3 Versions (version 1.2 (1989), 2.0 (1992) & 3.0 (1999)) (@las_preamble). Version 2.0 replaced inconsistencies in version 1.2 while version 3.0 clarified some of the poorly defined specifications of LAS 2.0 and provides expanded data storage capabilities (@las_spec_v1, @las_spec_v2, @las_spec_v3). Despite version 3.0 being the 'latest' version, its implementation and usage has been extremely limited (@las_preamble). Following this, the package lastools only provides support for LAS file versions 1.2 & 2.0.  
+
+The exact standards and structure/s for each LAS file type can be accessed via the below links (and/or from the embedded hyperlinks elsewhere):
+
+[Las Standard 1.2](http://www.cwls.org/wp-content/uploads/2014/09/LAS12_Standards.txt)
+
+[Las Standard 2.0](http://www.cwls.org/wp-content/uploads/2017/02/Las2_Update_Feb2017.pdf)
+
+[Las Standard 3.0](http://www.cwls.org/wp-content/uploads/2014/09/LAS_3_File_Structure.pdf)
+
+###Data aquisition
+
+The process of collecting the information stored in a LAS file is often termed 'wireline' or 'slimline' logging. This is because  a tool (termed a sonde) (for measuring responses) is usually sent down a well/borehole by steel cable (wireline) which enables electrical signals to be brought to the surface through one or more conducting wires (@reeves). The electrical signals (usually in count rate/voltages) brought to surface are recorded by computer and processed. Processing typically involves merging multiple signal responses with depth, normalising responses with calibration procedures and converting responses into engineering units (e.g grams/cc) (@reeves). This data is then formatted into LAS standard format or alternative formats at request. Finally the data is typically visualized as curve/s (with depth on the y-axis).
+
+As example, below plots the depth (y-axis) against the repose data (x-axis) using the example LAS 'object' from the lastools data sets. 
+
+
+```{r, echo=TRUE, results='asis',fig.width=4, fig.height=6,fig.align="center"}
+
+library(lastools)
+lastools::las_plot(lastools::example_las_obj)
+
+
+#$\sum_{i=1}^n X_i$
+
+#$$\sum_{i=1}^n X_i$$
+
+```
+
+###Purpose/application
+
+The data is typically used to characterize rock properties and has been used extensively to support the size and quantity of oil, gas, water and coal resources (@reeves). "The reasons given for running logs invariably include one or more of the following (@reeves):
+
+* depth to lithological boundaries
+
+* lithology identification
+
+* minerals grade/quality
+
+* inter borehole correlation
+
+* structure mapping
+
+* dip determination
+
+* rock strength
+
+* in situ stress orientation
+
+* fracture frequency
+
+* porosity
+
+* fluid salinity"
+
+**NB Reword the above - directly qouted from (@reeves)**
+
+###Measurements
+
+Most common measurements (which are stored in a LAS file) comprise of: nuclear (e.g gamma ray, spectral gamma, gamma density), acoustic (e.g velocity) and electronic (e.g spontaneous potential, resistivity). In addition borehole geometry measurements such as the axis in three dimensions (verticality) and borehole diameter (especially needed for correction algorithms) may be recorded.  
+
+####Nuclear Measurments
+
+#####Gammay Ray
+
+Most Gamma ray tools record the total abundance of naturally occurring gamma radiation from the radioactive
+isotope of potassium, K40, and from isotopes in the decay chains of uranium 238
+and thorium 232. Sandstones,evaporites limestones and coals tend to have low abundance while high abundance is found in clay rich lithologie such as siltstones and shales.Gamma ray tools are generally calibrated to read in API units which are defined as 1/200th of the difference between the low and high
+activity zones in the American Petroleum Institute gamma pit at Houston.
+
+
+##### Spectral Gamma
+
+Spectral Gamma tools record not only the number of gamma rays, but also their
+energy. This allows the elemental concentrations of K, U and Th to be deduced.
+As with total spectrum gamma logs, the response over a particular sand/shale
+sequence may produce a characteristic signature that can help correlate the
+sequence between boreholes. The spectral gamma ray can, with other log data,
+help identify clay mineral types. It can also help differentiate uranium enriched
+permeable sandstones from potassium rich shales.
+
+##### Density Logs
+
+Modern compensated density tools comprise a gamma ray source (usually Cs 137)
+and two gamma detectors, typically about 0.15 m and 0.40 m from the source. Both
+source and detectors are heavily shielded and collimated in order to ensure that
+emitted and detected gammas travel through formation materials, with a minimum
+of interaction with the borehole.
+
+#References
+
+

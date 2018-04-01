@@ -1,0 +1,22 @@
+Package: lastools
+Type: Package
+Title: Tools for reading/writing and maniplulating Canadian Well Logging Society (CWLS) Format V1.2 or 2.0
+    LAS Files as R Objects
+Version: 1.0.0
+Imports:
+    ggplot2,
+    stringr,
+    reshape2,
+    data.table
+Author: Matthew Dick & Kane Maxwell
+Maintainer: Matthew Dick <mgmdick@gmail.com>
+Description: Functions for reading and writing version 1.2 and 2.0 LAS files
+    as specified by the Canadian Well Logging Society standard. Currently includes
+    functions to perform standardisation steps, such as format validation and depth
+    reversal. Currently only tested on coal borehole logs.
+License: MIT + file LICENSE
+LazyData: TRUE
+Suggests:
+    knitr
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1

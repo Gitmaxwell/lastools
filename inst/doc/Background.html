@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Matthew Dick &amp; Kane Maxwell" />
+
+<meta name="date" content="2017-10-06" />
+
+<title>Background</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Background</h1>
+<h4 class="author"><em>Matthew Dick &amp; Kane Maxwell</em></h4>
+<h4 class="date"><em>2017-10-06</em></h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#about-lastools">About lastools</a></li>
+<li><a href="#las-data">LAS Data</a><ul>
+<li><a href="#las-file">Las file</a></li>
+<li><a href="#data-aquisition">Data aquisition</a></li>
+<li><a href="#purposeapplication">Purpose/application</a></li>
+<li><a href="#measurements">Measurements</a><ul>
+<li><a href="#nuclear-measurments">Nuclear Measurments</a><ul>
+<li><a href="#gammay-ray">Gammay Ray</a></li>
+<li><a href="#spectral-gamma">Spectral Gamma</a></li>
+<li><a href="#density-logs">Density Logs</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+
+<div id="about-lastools" class="section level2">
+<h2>About lastools</h2>
+<p>‘lastools’ is an R package for reading and writing <a href="http://www.cwls.org/wp-content/uploads/2014/09/LAS12_Standards.txt">version 1.2</a> and <a href="http://www.cwls.org/wp-content/uploads/2017/02/Las2_Update_Feb2017.pdf">version 2.0</a> Log ASCII Standard (LAS) files (<span class="citation">Canadian Well Logging Society (1990)</span>, <span class="citation">Canadian Well Logging Society (2017d)</span>) and for performing common functions on LAS files including:</p>
+<ul>
+<li><p>version conversion</p></li>
+<li><p>depth conversion</p></li>
+<li><p>merging</p></li>
+<li><p>visualizing/plotting</p></li>
+<li><p>re-sampling/filtering</p></li>
+<li><p>bulk loading to R data.table</p></li>
+</ul>
+<p>While the Canadian Well Logging Society provides free software called <a href="http://www.cwls.org/wp-content/uploads/2017/02/CWLS_LasApps_v2_4_14.msi">LasApps</a> (<span class="citation">Canadian Well Logging Society (2017b)</span>) and a Python package called <a href="http://pythonhosted.org/lasio/index.html">lasio</a> (<span class="citation">Inverarity (2017)</span>) exists to perform similar functions; at time of writing no R package existed for reading and manipulating LAS files.</p>
+<p>The aim of lastools is to provide functionality for reading and manipulating LAS files in the R environment and to provide additional unique functionality not found in existing alternative packages/libraries/software.</p>
+</div>
+<div id="las-data" class="section level2">
+<h2>LAS Data</h2>
+<div id="las-file" class="section level3">
+<h3>Las file</h3>
+<p>A LAS file is a standardized, structured ASCII file containing header information and log curve data derived from the continuous collection of (usually geophysical) measurements from a borehole or well (<span class="citation">Firth (n.d.)</span>). They are often termed wireline log LAS files and have the file extension “.las”. They are <em>distinct</em> from ‘lidar’ LAS files which are ’industry-standard binary format files for storing <a href="http://desktop.arcgis.com/en/arcmap/10.3/manage-data/las-dataset/what-is-a-las-dataset-.htm">airborne lidar data</a>.</p>
+<p>The LAS standard was introduced by the Canadian Well Logging Society in 1989 and to date consists of 3 Versions (version 1.2 (1989), 2.0 (1992) &amp; 3.0 (1999)) (<span class="citation">Canadian Well Logging Society (2017a)</span>). Version 2.0 replaced inconsistencies in version 1.2 while version 3.0 clarified some of the poorly defined specifications of LAS 2.0 and provides expanded data storage capabilities (<span class="citation">Canadian Well Logging Society (1990)</span>, <span class="citation">Canadian Well Logging Society (2017d)</span>, <span class="citation">Canadian Well Logging Society (2017c)</span>). Despite version 3.0 being the ‘latest’ version, its implementation and usage has been extremely limited (<span class="citation">Canadian Well Logging Society (2017a)</span>). Following this, the package lastools only provides support for LAS file versions 1.2 &amp; 2.0.</p>
+<p>The exact standards and structure/s for each LAS file type can be accessed via the below links (and/or from the embedded hyperlinks elsewhere):</p>
+<p><a href="http://www.cwls.org/wp-content/uploads/2014/09/LAS12_Standards.txt">Las Standard 1.2</a></p>
+<p><a href="http://www.cwls.org/wp-content/uploads/2017/02/Las2_Update_Feb2017.pdf">Las Standard 2.0</a></p>
+<p><a href="http://www.cwls.org/wp-content/uploads/2014/09/LAS_3_File_Structure.pdf">Las Standard 3.0</a></p>
+</div>
+<div id="data-aquisition" class="section level3">
+<h3>Data aquisition</h3>
+<p>The process of collecting the information stored in a LAS file is often termed ‘wireline’ or ‘slimline’ logging. This is because a tool (termed a sonde) (for measuring responses) is usually sent down a well/borehole by steel cable (wireline) which enables electrical signals to be brought to the surface through one or more conducting wires (<span class="citation">Firth (n.d.)</span>). The electrical signals (usually in count rate/voltages) brought to surface are recorded by computer and processed. Processing typically involves merging multiple signal responses with depth, normalising responses with calibration procedures and converting responses into engineering units (e.g grams/cc) (<span class="citation">Firth (n.d.)</span>). This data is then formatted into LAS standard format or alternative formats at request. Finally the data is typically visualized as curve/s (with depth on the y-axis).</p>
+<p>As example, below plots the depth (y-axis) against the repose data (x-axis) using the example LAS ‘object’ from the lastools data sets.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lastools)
+lastools::<span class="kw">las_plot</span>(lastools::example_las_obj)</code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYAAAAJACAMAAACzGUGkAAACMVBMVEUAAAAAADoAAGYAOpAAZrYAv8QZGT8ZGWIZP4EZYp8aGhozMzM6AAA6ADo6AGY6OpA6kNs/GRk/GT8/GWI/P4E/gb1NTU1NTVlNTVtNTV5NTW5NTXlNTY5NU39NWU1NWY5NXl5NZE1NZKJNbo5Nbp1NbqtNb7VNeXlNechNjshRTU1STVFTTWRTTW5TU39TWYNTf81VTU1ZTVNZTV5ZTWRdTU1eTU1eTVleTY5iGRliGT9in9ljTY5jq+RkTU1kTVNkTWRkov9mAABmADpmtrZmtv9pTVlryP9uTU1uTWRuTW5uTXluTY5ubo5ubqtunYNuq8huq+RvTW5vtf93zf95TU15TW55yP98rgB/U01/zf+BPxmBPz+BvdmDTU2DTW6DyMiDyP+OTU2OTW6OTW+OTY6Obk2ObquOoo6OyKuOyP+O5P+QOgCQOjqQkDqQkGaQtpCQ27aQ2/+dXk2dbm6d5P+fYhmf2dmi//+rZE2raV6rbk2rbm6rbo6rjk2ryI6ryKurzaur5OSr5P+1bk21jk21//+2ZgC225C2//+9gT+92dnHfP/Ig03Ijk3I5KvI/8jI///Nf1PNq27N///Zn2LZvYHZ2Z/Z2b3Z2dnbkDrb/7bb/9vb///kjlnknVzkq2nkq27k/8jk///r6+vy8vL4dm3/omT/tW//tmb/yHn/yI7/zX//25D/29v/5Hn/5I7/5J3/5Kv//6L//7X//7b//8j//83//9v//+T///8gNn1UAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAcr0lEQVR4nO2djZ8ct1nH9+JcSOokdYBs4XBLSzmoeX8p5SUlUKcGk6aGoxSOhlCwMS+LgfZKaeAS6vagJslysFAH51pDj5sOXC8uyQYfPv11SBrNi2Y0MxqNNHqZ5/exVzfa1YxG39G79MwEgaxqYjsCYxcAsCwAYFkAwLIAgGUBAMvSBeC1jlIMphquZzQNCgBIhTMnACAVzpwAgFQ4cwIAUuHMCQBIhTMnACAVzpwAgFQ4cwIAUuHMyRSAVx97G9YTr916lrhve/CV5oRMfv4tn2N/PPDca//2s4XjJ+rCZeJ+/rg8gJv45w8Vrh8OgG/7HEmVJ9I/a+6M+/lrLz/4SvpjGjQ9Ts7TBID/+c89JwvgJk7zW88+nl8/LACvvfrtr3QBgD/TH6cpWThPEwDu57eefaL8fU00k1/is2fXDwwAfRaVcsCtZ5OnsXCeJgDcz1/9VtkckEUt1Bxw63dkATzGaorsD1I646qgcJ4mANnPS1VGG4A0Z+WXDQtApxxw84Hyj/GjLJkD+J/XXk6UA3DaP/Bcdv3AANx8sEsd8DJpxrAf33yIfP7VE4XzNAHgfy4NIKkD0rrj5bG3gm49+1D2Yxo0TRnJVlBWZ0sDSJ76mw88l10/HAB5YdyhFfTY40k4HJA07AWFes3lsp93BEDPn2U8fP1gALRJMRj0hOukeGddgwGAOineWddgAKBOinfWNRgAqJPinXUNBgDqpHhnXYMBgDpFKKJChU+hkx6wYMxD9CH+RnS5kiPwzaLZGLA+nDkBAAAAAHQIACgKAAAAAKBDAEBRAAAAAAAdAgCKAgCBAAApCnJAIDkAACgKAAAAAKBDAEBRAAAAAAAdAgCKAgAAAADoEABQlFEAsQyATS0AVnUBmAMAJQCUgJYcMJ+HAwDFwwEgBDQVQfP5PBQAURx7CAAlDIIAEBEEwwDABPQBiAiDMABEgwGIVrUCiNA8DABRPBSApCmkEcAcAFgEEE4RNBwAtKoNQDCVMGkGDQeA5YG+AJJ2aBAA4srtmQXA9YjVALBeQBAA4iE7YnoAzAMaiigV/sMAKA5JdAUwL3SB/QdQKfxdBjCnaghnToYAxNXCfyAAhSEJGQBJ0teeTVPqNMgEgDgWDYM6B2A+5+rbUADEdWVPHQC0uakVQD4m1ABAUNyHAUDU7mkDgDPBJoEwHABhcR8EgLiUypIAyMdmIg0AskG5GgBZLys8AHE5lTsAYB+bBZkCIJPyowVQzAEpiK4AouqQUBZNchRsDshnv/QASP/kCqf8cgCgKJMA8sIJANTKMIC8SsgvBwCKMgYgrQa61AGoMiqdRTNoAJorYXFTqHA5RQABt4L69AP4j1KXAAC0SiOAtMgBAF3EYh33BVAYlAAAXaQnB+gZihgtgLhvJcyPyAGALoq4CXgAIC2XAJSmZgBAF2kAsDkQAM86YstnFggdX56uH+C/L06ns+yIOYl6AhC1+9UBhDQUcTQ9u0An2zO0fw4dX9lBy6d32BFzmHoBEA/9GwNQ2obkNIDdtes4BxxfXZCccESSe3fGjpjDftgHgOY54aAAJEXQ8tIBffyxsMOOcs/TWNiJFaOwqRiuXqst38+1X1FdUgCO1tO0PtneSI9yTyLyvCiOhgrm4/vlgJYpSZ9zwPHlDYQqOYCIRletIwYAGrXM6wDcCsJtIFRXB0T5clAAIC0pAKTgwQ2eJP3TI+YwpbGuX5MIAITq0g/YnxLN6voBSaztA5BYmOUTAEnlsa7sDHYPQBTsyjgXcoDM4lwAYA6A3P6A+gXpAKAfANktSm3r0gGAGgD5XZLzUAFYrYQ77BMOF0DUeYMGANAgJwB0MFUQbh1gEUAHaykBt4Ls1QEd7AWF3A+wBqCLxaxsf2SAAGw1Qzsb7ZszAQAtANTNVuYYwgBQa6OgDoCOjdqrXAesG4DEmYu3bWtKnQaZ2Sk/MIDSBIAKgMRJIHgPIDNWMBCA8vizOgDyEYq9oOGspVTGn/sBoBkhAACD2Quqjj/3BhCFAWAYi1mC8WcNAEKxGWcegGj8uS+AQqNUU+o0CABUnICsp5s3Xy8cfwYA7HOAShgApLIDQLAEqz+AKIx+ACXgJwAElbBlAMH0A4ybLjYFIAqlH2AYgGgRIgAIAkC6fldT6jTIuPl6gwCEq0ABAADoJAAAAFQBiNdB6wEQTCUMANoEAAAAANCh4QHUbMXQAiCcoQg/AYQzGGeyJ2wOQDjD0UZHQ40BCGdCBgBICABUHSiCIAdok4QRJ1V7TW1WmVQ1sDUnaAWVnbkonDkBgAoAP4ugcAAEtTTR055wOItzfQUQ0CvNK9u2PQHACiJNqdMg4wCydwpoBlBnF0UbgCgUAKUlot4ASPbrGRfkAJGTvV9bU+o0yNs6wByAOTRDbQKYQ0/YKoC5OJw5eTsaagZA2XSHptRpEAAAAC4BiAKxFeFvHRDaaKh/raAosNFQD/sBUVCjoRWbHV4ACGhpIkXgH4Bw9gdQJxZ8xYI5CiCsHCB8xRgL5uZ8QECLc6ljIgcAAF4AQFEDFUHVd7yxYABA03maAQje8caCuQkguEo4qr5ungVzFEBgzVD6GWsGYHSPWLpCUVPqNGg4ABE/NMqCuQtgHhwAFBdH5lgwRwHMAyyCiBPrBGDOVEEglnNFTuwBgEBsR9c4sfMAwloVAQDa5DMAQxazwpqS5J1Yax1gBkC4OSDW3AyNTFhNDG1VROLEVPxXLJhLAATvVNKUOg0yPynPXmdS/ooFc8d29Fz0djdNqdMg0+uCTNqM0wpg3hjOnDx/g4Y2APMgAaCkAPIBQKhFEJHJOkDrGzSCeZFb5fZiE6si9AMQvGRYU+o0aKB+QKx/SnIsAJbPLBA6vjxdP8B/X5xOZwjtT6fTs4vUM1EbgMpXLJhDAOaCtzzrTWyR2gAckaQ+2Z6h/XPo+MoOWj69g3Zn5BvmyWSrCNL3HrF5UzhzagGwu3Yd54DjqwuSE45Icu/OTl7YIV8xT/bDBgBGK2GNL3JzMwfQNF5eOqCPPxZ2cNFDSqLc8zRWbfi4zWaTqsEmJp12m+YDG2sikgJwtJ6m9cn2Bi2FcC7IPYlqc4AxWxHacwBxyv0xvYktUrcccHx5g3nvzgrZAjXuD/AJgIP7hJd5HYBbQbPUe3cmXwd4BcC5CRmSxqTgwQ0elv6k7Dl5ccE8mRoAmNmgkZ1T/+ts3ZqUL/QDSPufVL/YXdtB8v0AzwA4lgMkFQ4A1+oASVmrAwBAonAABFcEGW6GAoBEAQFwrBUkKQCgKAAAAACADgEARQGAigOtIACgIACgKAAQOgDTM2IAIFFAAAJrBXkIIKR3SfoJICxrKd5VwmGZrYy9ywFBGW6NzVnONQQgqE16/JpEHwCEtUkvFt6lywCcXJ4uqQAAOLo4V1L2AFRNRqgBcHN5urR8BxDiLkmfAMxbwpmTOQDlDoDDAATbIwGAPICK0ZSuAEQbhP0HULFRAACEAgDi9qf3AKpjEO4CyAzVAABbAFACAQDYBBAFNhThUR2QO5XugKbUaZDBZuhQHTGNAPpsU73zyFb5z4JXrYwOR/sHoDwkpJYYrgAYwGKWfgA6tig5A8DkuySNAZBYF3Tv2hn8uXffS3cenkwmZ9CdR/98ct8/4NROjx/5i8nk1G0K4N61yeS+l+oTDgAoAEB7OHUxhbvnLzAO99PHPT8+dfvetfuJF3Hoz+vk7cs8rQIgjzb+/83byd93Hr6ARMf43yF5+imYGgGAsiNTB5AyiD7Wh7jIWdmiZT39YMePJqmOvfYmVGdqEw4AqABAh6e+ihncPb+yxZ50VgSx4wKAhtKHCgAoAbj71KdwIh/STJDngPIx8VppaQjpAlCnNnNNvQ02Ib02mxCSM9p0Y3I/TWvc8CkASI+LlTCG0kQBcoBSDsCFPalXb+AS/9O0qEnqgOwYN0OThhFthjblAgBQcUJamggAWgUAAAAA0CGbAMov0gAAfgMIbIOGhwAktih9XSiVhAMAAqc9BwAAcwDmMu+S9AbAIPMB2gDMk/VBgnBleQJgoCnJ8qtkVADQtK8PV5YXAOKhJuV7ApinL3BrCFeWDwCGWx3dB0DdmkT/AQy4MKsHgNqNAaoA6LT85AIdBJ3QmfkWhbA0UR1A/c4MZQCPZnPA9M9WhQGAf5ePzSIoSfU7b79tG8CwRZA6gCh/iWonAHFFRQB3n9qyDmDQSrgXgKghI9TdbksOuPdnDgAYshnaG0DU8V2SLQCcyAFR6cUBRgFwbzJRA9DpXZItAOjyCADQFUCHDRrut4K8BCC/QaMeAOsHIABgpwjqrFAAFI2mKALQUgl3FgcgyT+Ny9nr5D+ATtZSzACga9kV5T0ATf2AzioCaFrG3ibvAWjqB3QWnwM0A0BDTcgQZ7UnABcq4UOV0j9RCADs7hO+e36SSlslPCiAfIGcOoBI1mqiJ81QANAuQSWsVBCJU3mgVREAIBAA1bn5uts1AWAvqwNUegM1RZBHABxYlqK3H0BmiQQ36yKAeWeDTc5Xwknii262AgBtagKQLZDrBICmfW22qLtdUwD2srHUrirEuubRdxJA7YosVQDJcBquRZM/VrZo+z47rqYtB2Av2Vdfv627HUD9o18LgBRClgDUW+tTBkAnAfZO3U5nAxL7EexYUMjrbQWl08DdAESbm4EBwJ8pgCThn9oqrFcxByAup7IkAIIgUS8A6fosaQAN9irbAGxWVJMD6E5txM3W1wJIdnT3KILUAaQfpZsyCmAunAGQBNBcBxBbQekfxIAH2UGfr1epBdBnOIgVQX0BlHJAkYRuAOVOryYAxITESnlRSmrAoy0H9JAZANkHgaAVQFvzpw8A2phJARzSbu2NC4X1KgYBRGqVcDsA8pGUSE0A0KrQVwCgtfDvBYAa6ii2gtJKuKUVRPsBF0oWbpbPLBA6vjxdP0DoaDo9mx8xZzAAyBsAuAI4w+bXL9CCfWVLrh9w49RXzl/gZ4aPSJKfbM/Q/jnKAjvsiDkAgAPQWaVmKMkjxWbo7tp1nOrHVxdJTqAZgh0VPL0D0DD44BiApAhaXjpAx1d2yCHJCMlR7nkaK/15u4EmdUmYdpKz3SRnk6lJZgDg/sNXCAOuH0AAHK2ztF5eXNtJjzJPqvSxEcyBDZgDolWhbykHNG7JsJkDEqN/JQt/pRyQP/oFz2KK1G6N6Q+ADho1A+CWKHoIQKAlXweg3VlTHWA0B4wXwMn2Bin8WaHDjpgzJABMQAcA8SrETgD0qQjgcCJoqhb7AfvTKa4DGvoBiqOh/gEwkQPuXaOtn7vn2/e2CkSj238wrjcAwaslfQGQ9oAT0+BdRaKbT8U4DsDJfkC+MLTV2q5IEbcExSKA6ov1BABc7Ann40SKEzLF6tcQAIlWkCSAVhsFAKCc9umEWXq5ngCqL8/2HoCRIqg6N5ZdrvYKZSuWYgCGZsQ6y00AhXQvf51drjcAmcZQ3e3WA+BWoUg0ZzQuT9cBgKV7TR0gB6BswWxQAPwqlMoEZAOAnupfB2hYFdENgMyIRN3t1gLgVqHIbDlyBICotHEawGpFCQBuFcqwr7HqA0DPwqxuAEy1gg4bZyArChFAVJ0Yy6KZeRpaFUGVrUKR0FgBmOqI8atQJKRxWUqPVpBmAKgyMZZF0zQAbhWKjJwAsClMay8BZKtQAIAlAF3lAgBd+wPGDoCainYDQGViLItm5mmyFdRFmhfnisx1twHQtkWpAKA8L5NFM+gcQGMd5/nAJoDSqHQWTebp4IRMTxVjLbZX6RIAF6cke4qPfCzYoT0wAH5UOoumJgD6ZM50cSxpuNUCADdXRfSTMJVjwabVwQBwY3JZNMcFAEXVbdsVANpMFQAAIQDixII+GgtmEEBxTC6L5jgBiPpoLBgAUAkkUAuA6gZKFswKgPCboQBAWoMBKG8fY8FMAiiMyWXRNA/gMDF5lZlNaREA0AyArKoi65szoxEtCRc0gHxQNIumaQDJSpQ7b7+dmU1pSbiQ64BaABpaQfOKvl7YqI2QezkgMAB1OSAzCJRbS2nWUABs9AOsAHiUrgtd2crMprRolACM1wHpsog9Z1pB1d1LaYIEBiB56g9XtjKzKS0aBoCdsSArAGjhn9kLuvNw2wp1AKAbQEcBAAAAAHQIALgMQLRwmgUDACqBuqrRipOEGSZl1dlv6m2xyT0ATTnA0pywyRygT2EDyFYoZtEcI4BY+BULBgA0nQcAKAoAAAAAoEN+Aei9PF2fAAAAAAA6BAAUBQAAgAUA0AoCAKnCHgsytixFn0Y5HzA6AK7NiI0PgGPrgkYIgOxRAgAiwfL00QAovduBBQMAms4jAYB/vQwLBgA0nUcGQFTcNs+CAQBN55ECEMWOABjXWBAAaNKwALKNSgAg1TgBjLYOKAyNsmAwGqrpPABAUQBgXAAGrgMAgG0AqfHELJoAwAUA4xwNBQBCBV4JA4CKk87Qs2AAQNN5AICiBgeQLpFgwQCApvMAAEUNXwQNC4CZkM6imXiOuB8wdCtIDGC0w9FDT8jUAuj7Bg19CntOGAAAgDaFDkA8GOdTHbB8ZoHQ8eXp+gFCR9PpWXy0P6Uu80zkFwCPWkFHJKlPtmdo/xxlgR20OyPfME8mKQD5ClEAkKoFwO7adZzqx1cXSU6gGeLkhR3yV8ETeTYY510RtLx0gI6v0GTHzzwueqbTWcHzNJb0BSu2g0zaC0K1JoN6WwzSJSkAR+ssrZcX13bQ8ukdhHNB5kklmwOGHozzvyNWygFpku/OCp4IAChLCkCxuE9qYOwo1QEwFFGWFICT7Q1S+LNChzgnLy6YJ5McAAtDEcnbrLJo+gkgbfLjDgCuA1LHi36AGIA/zVBpyQFwJQeMFYCNOkAEACZkhgSQrI7Lrjd6AElBBABSWQCQNIZYMACg6TwAQFF2AMQAIBXUAaMDMHgriLzRMIsmABh6MA4A8M7wHTEBgPH2hIefkgQARcfKYBwASJ14eGspAKDg2DDYBAAyx47JsjoA0XxsK+MsGe2rBRCh+ZgAxLbMVjYASFaHjgOAxbcoNQCgBEYBwKbtaKLqWBAAAACZzAOIxV+xYPYAjKYOAACNAgAAwBKA0dQBUAk3agT9AADgJoDR1AGRxVeYNAAY01iQizlgTKOhTlbCAIAFAwCazgMAFAV1wAgAQCuoQQBgBABiFwGMqCPmZCUMAFgwAKDpPI1FkF0AsCoCADRoDACIvYjseuMDENuuA8QAQmuG1qpioKkswwabiERGm1yx2GQ4B8Rx+cFyJAeMZCgirt6XGwA8MlcjKWEqx4L7sgBgtPsDYtF9AQBeACBkAM4WQWOpAxC/L88hAGNpBUWclTKXAATXEasDEAGAZo1gce64AUAR1CLTQxGV+wIAvAAAAAAAOuQwgHEvS3FgOBoAOAlgLFOS7gIYyRYl+wCE7w8AAGkw82/QqAUgYzxRU+o0KGgAq1h8Qo4PgL3BOJr45YQEAEMBSB99AGBlNDR5+AGALQCrFd8smgAAAPAKsg6QAzCSfoCzAEYxFGFpVYQMgDEMxllbFwQAUMSZqgcA9TIFoLouHQAIZQZALFiXDgCEMgEgFq7KBQBC6QYQx5WGp5MAwlwbGseltzTIAECbFgCEuTq6+pIAKQAkDwCAvoq4JSjdAGACWgGs1ickABACiDaHBhBkHeAKgNWGhMw9Q2wFqdYBVgCEOBinDEBrHbDalJAAQARAbytoxADyyRcAIC29PeHy29ocBjCfezIjtnxmgdDx5en6ATk62Z5lR5knUQ8AenvCq40JmRzN5/68Se9oenZBk33/HDncn87So9yTiMXa/lBEKwC5R98VALtr13EOOL66SHLC8qN/OEuPMk+qNNb149COAJB89F0BkBRBy0sH6PjKDjp54Yv4sWdHqSdCp7Gy37caaKpIr8UmkXGmolwx1JRKCsDRepLW+xuk3GFHqWei7LGpTsMPmgPKS+KCygHYORHlACIAoCgpAKy4358SbThdB4QJ4GR7gzV4SA5gR7knUQ8AWvsBYQKQ7gcoNUN1AlhtSUgPAUgqibVaT1jjYNzIASiOBWECopl5ANBF/QDgmpgJACiKFUFKdUDxY5MTAJBWGmuVVlDNB/5MQQCAVpkBkH4U8gJ/OQCQKot1956wBACSFwBAo8zmAJQ3VfnLlZzqiiwAAACapRlA71YQAFCUQQB8D4G7HADIpBVAU2eAuxwAyKQDQJ7kgiIIADSrL4BSdwsAdFU/ALoG4wBAJNia3Q5A23A0AIhQ1UZWKwB9EzIAAAB0lYFtqh13ScKUpBYBAEUZ2agNAOQFAAIE0LUIqvlQAdCWkNIpDwAAQDcBAEUBAAAAAHQIACgKAAAAAKBDAEBRAAAAAAAdAgCKAgAAAADoEABQFAAAAABAhwCAogAAAAAAOgQAFAUAAgGQ6nTtQelI4C36S+wpdwXhBZtCSMVXswCA7NkMCQDIns2QAIDs2QxJNwBQRwEAywIAlgUALAsAWJY+AMSq6NkFs6V4sj1d20kNKyb2Rme8mcVE2OvdWbi1LyH01pPTd34ZLT/y8en6v9Jg09+7PH3v707X/zNxMmuNRzRUek7ueggtLxa/5C6XehSjW7QMyeLB3Y1J6QOwOyOfzKb6LrVwXDCwzh+lIl5/977krz+evuMc+r/f/hD6l+/BiftbaP89s/+9+DH0H9OPnXzmfehr75oRJ7PaTtKsYMKdv97xZewKLlj0KET3+wsW4lk8+LsxKW0ATl6gVowTe7r/fHWRH5A/iY1j3tQuYj84+ZufoT/4+Nr1pz+4eOsXn0ev/8Da59//PHrzp//0G9+1QG/8+C8fX/ng4o33P08czmJvfnDMX49ZVa5csOBRiO4/vuNPcuvALB7c3XBR1i1tAHBmJcVMcu9fuPS3pEjIzUuTx4g3Nk2FvfJwy4/85s7rP/Jl9NYvfOL1H/4SKYym099H//ODv7H86Cd33vjJzxKHs1mNT5rZseauJ7RujbgY8NHl7GOTeHBfc1HWLW0Alk8T8/bMpvoXLtLIZwbW6Qdvbp0Key1/5dd3knDkxv/rnRTAf+Ni+I2f+MTR9/7lF//6Oz579N5P7nzjO6lTsNq+vIiTnB0s+evRImhtp3LBggcf3dxCPIsH97UfAKh2Z2kO4B9BciM1OYB60XClHEDD//2Tv5o8+qIckB+UH3lcCf/aC405gI9uJQdwX3sFgNUBf8QXwrsbSFigpl403DKtA37oeVzi0wL5D37qQ6zwF9UB2eUWx6XrJaduqgO46P5ToQ5I4sF97UcdQB7ykxcXzKb6Li0SUgPrSZXGm1unwl5H7z7Hwi1/ibSCfgy3gtCbH/h59O/fffDmB3508bV3bZx85vsQczKr7axwSM/JX4++bKJs352PARfdgoV4Fg/+bkxKaz8gb4rjz0JDPK/4xP0AFk7cD5g+KewHcJcrXY90Eir23UsxKIYX9wOKHQtzgp6wZQEAywIAlgUALAsAWBYAsCwAYFkAwLK8A3DnkS3bUdAqAGBZAMCynAdw79oZ/Ll330t3Hp5MJmcIAMqAfNy7Npnc95LtGPaT8wDQ3qnbhMLd8xcSDjmAe9fuT772We4DIMmN/3/zdvJ3AcAhefopGI/lPgBSBtHH/BAXQStFAHsTqjO2Y9hL7gNAh6e+ihncPb+yVcoBvpc+VB4AuPvUpx59CWMgmYDLAfjIdtz6ywMA6Mbkfpr26M7DFMDd82dwwbSCK2EMxXcKPgA4nJB69gauAT59/gKtk3GL9MNPJc1Qz9PfCwBBCwBYFgCwLABgWQDAsgCAZQEAy/p/dEl5Ok4bbmcAAAAASUVORK5CYII=" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#$\sum_{i=1}^n X_i$</span>
+
+<span class="co">#$$\sum_{i=1}^n X_i$$</span></code></pre></div>
+</div>
+<div id="purposeapplication" class="section level3">
+<h3>Purpose/application</h3>
+<p>The data is typically used to characterize rock properties and has been used extensively to support the size and quantity of oil, gas, water and coal resources (<span class="citation">Firth (n.d.)</span>). “The reasons given for running logs invariably include one or more of the following (<span class="citation">Firth (n.d.)</span>):</p>
+<ul>
+<li><p>depth to lithological boundaries</p></li>
+<li><p>lithology identification</p></li>
+<li><p>minerals grade/quality</p></li>
+<li><p>inter borehole correlation</p></li>
+<li><p>structure mapping</p></li>
+<li><p>dip determination</p></li>
+<li><p>rock strength</p></li>
+<li><p>in situ stress orientation</p></li>
+<li><p>fracture frequency</p></li>
+<li><p>porosity</p></li>
+<li><p>fluid salinity&quot;</p></li>
+</ul>
+<p><strong>NB Reword the above - directly qouted from (<span class="citation">Firth (n.d.)</span>)</strong></p>
+</div>
+<div id="measurements" class="section level3">
+<h3>Measurements</h3>
+<p>Most common measurements (which are stored in a LAS file) comprise of: nuclear (e.g gamma ray, spectral gamma, gamma density), acoustic (e.g velocity) and electronic (e.g spontaneous potential, resistivity). In addition borehole geometry measurements such as the axis in three dimensions (verticality) and borehole diameter (especially needed for correction algorithms) may be recorded.</p>
+<div id="nuclear-measurments" class="section level4">
+<h4>Nuclear Measurments</h4>
+<div id="gammay-ray" class="section level5">
+<h5>Gammay Ray</h5>
+<p>Most Gamma ray tools record the total abundance of naturally occurring gamma radiation from the radioactive isotope of potassium, K40, and from isotopes in the decay chains of uranium 238 and thorium 232. Sandstones,evaporites limestones and coals tend to have low abundance while high abundance is found in clay rich lithologie such as siltstones and shales.Gamma ray tools are generally calibrated to read in API units which are defined as 1/200th of the difference between the low and high activity zones in the American Petroleum Institute gamma pit at Houston.</p>
+</div>
+<div id="spectral-gamma" class="section level5">
+<h5>Spectral Gamma</h5>
+<p>Spectral Gamma tools record not only the number of gamma rays, but also their energy. This allows the elemental concentrations of K, U and Th to be deduced. As with total spectrum gamma logs, the response over a particular sand/shale sequence may produce a characteristic signature that can help correlate the sequence between boreholes. The spectral gamma ray can, with other log data, help identify clay mineral types. It can also help differentiate uranium enriched permeable sandstones from potassium rich shales.</p>
+</div>
+<div id="density-logs" class="section level5">
+<h5>Density Logs</h5>
+<p>Modern compensated density tools comprise a gamma ray source (usually Cs 137) and two gamma detectors, typically about 0.15 m and 0.40 m from the source. Both source and detectors are heavily shielded and collimated in order to ensure that emitted and detected gammas travel through formation materials, with a minimum of interaction with the borehole.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-las_spec_v1">
+<p>Canadian Well Logging Society. 1990. “LAS 1.2 a Floppy Disk Standard for Log Data.” Connecticut, USA: Canadian Well Logging Society. <a href="http://www.cwls.org/wp-content/uploads/2014/09/LAS12_Standards.txt" class="uri">http://www.cwls.org/wp-content/uploads/2014/09/LAS12_Standards.txt</a>.</p>
+</div>
+<div id="ref-las_preamble">
+<p>———. 2017a. “HELP: Load - Log Ascii Standard (Las) File, Versions 2.0 &amp; 3.0.” Connecticut, USA: Canadian Well Logging Society. <a href="http://www.kgs.ku.edu/software/SS/HELP/las/index.html" class="uri">http://www.kgs.ku.edu/software/SS/HELP/las/index.html</a>.</p>
+</div>
+<div id="ref-las_cws_front_page">
+<p>———. 2017b. “LAS (Log Ascii Standard).” Connecticut, USA: Canadian Well Logging Society. <a href="http://www.cwls.org/las/" class="uri">http://www.cwls.org/las/</a>.</p>
+</div>
+<div id="ref-las_spec_v3">
+<p>———. 2017c. “Las 3.0 Log Ascii Standard.” Connecticut, USA: Canadian Well Logging Society. <a href="http://www.cwls.org/wp-content/uploads/2014/09/LAS_3_File_Structure.pdf" class="uri">http://www.cwls.org/wp-content/uploads/2014/09/LAS_3_File_Structure.pdf</a>.</p>
+</div>
+<div id="ref-las_spec_v2">
+<p>———. 2017d. “LAS Version 2.0: A Digital Standard for Logs.” Connecticut, USA: Canadian Well Logging Society. <a href="http://www.cwls.org/wp-content/uploads/2017/02/Las2_Update_Feb2017.pdf" class="uri">http://www.cwls.org/wp-content/uploads/2017/02/Las2_Update_Feb2017.pdf</a>.</p>
+</div>
+<div id="ref-reeves">
+<p>Firth, David. n.d. “Log Analysis for Mining Applications.” Reeves.</p>
+</div>
+<div id="ref-lasio">
+<p>Inverarity, Kent. 2017. “Lasio - Log Ascii Standard (Las) Files in Python.” Kent Inverarity. <a href="http://pythonhosted.org/lasio/" class="uri">http://pythonhosted.org/lasio/</a>.</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
