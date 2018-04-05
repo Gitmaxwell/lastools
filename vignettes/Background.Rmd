@@ -63,11 +63,6 @@ As example, below plots the depth (y-axis) against the repose data (x-axis) usin
 library(lastools)
 lastools::las_plot(lastools::example_las_obj)
 
-
-#$\sum_{i=1}^n X_i$
-
-#$$\sum_{i=1}^n X_i$$
-
 ```
 
 ###Purpose/application
