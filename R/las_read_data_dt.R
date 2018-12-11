@@ -4,7 +4,6 @@
 #' @param dir string directory path containing .las file/s
 #' @return Returns a long format data.table containing well_name, DEPT (Depth),variable,value and file (location of las file)
 #' @export
-#' @import reshape2
 #' @import data.table
 
 read_las_data_dt <- function (dir) {

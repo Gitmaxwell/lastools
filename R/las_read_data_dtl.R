@@ -4,6 +4,7 @@
 #' @param dir string directory path containing .las file/s
 #' @return Returns list of data tables containing well_name, DEPT (Depth),variable,value and file (location of las file)
 #' @export
+#' @import data.table
 #'
 
 read_las_data_dtl <- function (dir) {
@@ -17,7 +18,6 @@ read_las_data_dtl <- function (dir) {
 .get_las_data_dt <- function(x)
 {
   library(data.table)
-  library(reshape2)
   las <- lastools::read_las(x)
   filename <- x
 
