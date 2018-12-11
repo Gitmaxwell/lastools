@@ -11,5 +11,6 @@ export(read_las)
 export(read_las_data_dt)
 export(read_las_data_dtl)
 export(read_las_mnemonics_df)
+export(write_las)
 import(data.table)
-
+import(reshape2)

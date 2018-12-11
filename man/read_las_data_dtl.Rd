@@ -10,7 +10,7 @@ read_las_data_dtl(dir)
 \item{dir}{string directory path containing .las file/s}
 }
 \value{
-Returns a long format data.table containing well_name, DEPT (Depth),variable,value and file (location of las file)
+Returns list of data tables containing well_name, DEPT (Depth),variable,value and file (location of las file)
 }
 \description{
 Reads CWLS LAS file/s from a directory location and returns a data.table of the log section data by well

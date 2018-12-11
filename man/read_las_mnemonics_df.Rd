@@ -13,5 +13,5 @@ read_las_mnemonics_df(dir)
 This function extracts las mnemonics from all las files in a directory
 }
 \examples{
-get_all_las_mnemonics(C:/Las_files)
+get_all_las_mnemonics(dir)
 }
