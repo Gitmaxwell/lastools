@@ -1,3 +1,16 @@
+#' Write LAS object to LAS file
+#'
+#' Reads CWLS LAS file/s from a directory location and returns a data.table of the log section data by well
+#' @param las In memory las object
+#' @param path Directory path to write las file
+#' @return Writes a las object as a LAS file to disk
+#' @export
+#'
+
+write_las <- function(las, path) {
+  las_string <- .las_to_vector(las)
+  writeLines(las_string, path)
+}
 
 .las_section_to_string <- function(df, section) {
   # Convert a section block of LAS files to a string vector to ready to write back out as a .LAS file
@@ -80,7 +93,4 @@
   return(lines_out)
 }
 
-write_las <- function(las, path) {
-  las_string <- .las_to_vector(las)
-  writeLines(las_string, path)
-}
+
