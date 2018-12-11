@@ -15,12 +15,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-#Introduction 
+# Introduction 
 
 The following outlines a typical workflow for analyzing and manipulating data from a LAS file using lastools functionality, and expands on function documentation by way of example/s.
 
 
-#Workflow
+# Workflow
 
 The typical workflow for analyzing and manipulating data from a LAS file typically comprises of:
 
@@ -34,7 +34,7 @@ The typical workflow for analyzing and manipulating data from a LAS file typical
 
 * Analyse Las data
 
-##Compile LAS files
+## Compile LAS files
 
 It is common for a company to have many hundreds or thousands of LAS files across a disparate file structure. However, it may be more convenient (in order to perform analytics or for loading/writing LAS) to have LAS files stored in a single file location. 
 
@@ -61,15 +61,7 @@ las_compile(s,t)
 ```
 
 
-## Check LAS file can be read to LAS Object
-
-Before attempting to load a LAS file to an R las object or to a data.table it may be prudent to check that the file is 'valid'.  
-
-
-**expand**
-
-
-##Read LAS file/s to R
+## Read LAS file/s to R
 
 'lastools' provides two ways to load las data. The first is to load a LAS file as a LAS 'Object' (using lastools::read_las). The second is to load LAS curve data to an R data.table by using lastools::read_las_data_df. The latter is really just a wrapper for read_las, however is convenient for rapidly compiling multiple LAS data sets to a flat file structure.
 
@@ -95,13 +87,13 @@ Loading LAS file LOG data to data.table is also rudimentary and supports bulk lo
 lastools::read_las_data_df("directory")
 ```
 
-##LAS Object
+## LAS Object
 
 A lastools 'LAS object' is an 'R' representation of a LAS file and is returned when using the lastools::read_las function. The representation comprises of a list object with list sections  WELL, CURVE, PARAMETER and LOG are data.frames while OTHER is a string with line breaks. VERSION is a numeric (1.2 or 2.0).
 
 Each section is representative of the most pertinent sections of a LAS file. Below is an example of each section using the example 'LAS object' data provided with lastools (accessible as lastools::example_las_obj)
 
-###Well Section
+### Well Section
 
 Contains detail on the borehole (well) such as the well identifier, service company, locality details, start and stop depths etc.
 
@@ -113,7 +105,7 @@ knitr::kable(lastools::example_las_obj$WELL,digits = 3,align = c("c"), caption =
 ```
 
 
-###Curve section
+### Curve section
 
 Contains the detail (API codes and long descriptions) of the log data headings 
 
@@ -124,7 +116,7 @@ knitr::kable(lastools::example_las_obj$CURVE,digits = 3,align = c("c"), caption 
 
 ```
 
-###Parameter section
+### Parameter section
 
 Contains additional details at the discretion of the service company or the requesting company
 
@@ -138,7 +130,7 @@ knitr::kable(lastools::example_las_obj$PARAM,digits = 3,align = c("c"), caption 
 ```
 
 
-###Log section
+### Log section
 
 Contains the actual response data in flat file (wide) format. Column names are typically codes which are fully described in the Curve section
 
@@ -152,6 +144,6 @@ knitr::kable(head(lastools::example_las_obj$LOG, n=10),digits = 3,align = c("c")
 
 
   
-#References
+# References
 
 

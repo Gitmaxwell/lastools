@@ -15,7 +15,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-##About lastools
+## About lastools
 
 'lastools' is an R package for reading and writing [version 1.2](http://www.cwls.org/wp-content/uploads/2014/09/LAS12_Standards.txt) and [version 2.0](http://www.cwls.org/wp-content/uploads/2017/02/Las2_Update_Feb2017.pdf) Log ASCII Standard (LAS) files (@las_spec_v1, @las_spec_v2) and for performing common functions on LAS files including:
 
@@ -35,9 +35,9 @@ While the Canadian Well Logging Society provides free software called [LasApps](
 
 The aim of lastools is to provide functionality for reading and manipulating LAS files in the R environment and to provide additional unique functionality not found in existing alternative packages/libraries/software.
 
-##LAS Data 
+## LAS Data 
 
-###Las file
+### Las file
 
 A LAS file is a standardized, structured ASCII file containing header information and log curve data derived from the continuous collection of (usually geophysical) measurements from a borehole or well (@reeves). They are often termed wireline log LAS files and have the file extension ".las". They are _distinct_ from 'lidar' LAS files which are  'industry-standard binary format files for storing [airborne lidar data](http://desktop.arcgis.com/en/arcmap/10.3/manage-data/las-dataset/what-is-a-las-dataset-.htm). 
 
@@ -51,26 +51,21 @@ The exact standards and structure/s for each LAS file type can be accessed via t
 
 [Las Standard 3.0](http://www.cwls.org/wp-content/uploads/2014/09/LAS_3_File_Structure.pdf)
 
-###Data aquisition
+### Data aquisition
 
 The process of collecting the information stored in a LAS file is often termed 'wireline' or 'slimline' logging. This is because  a tool (termed a sonde) (for measuring responses) is usually sent down a well/borehole by steel cable (wireline) which enables electrical signals to be brought to the surface through one or more conducting wires (@reeves). The electrical signals (usually in count rate/voltages) brought to surface are recorded by computer and processed. Processing typically involves merging multiple signal responses with depth, normalising responses with calibration procedures and converting responses into engineering units (e.g grams/cc) (@reeves). This data is then formatted into LAS standard format or alternative formats at request. Finally the data is typically visualized as curve/s (with depth on the y-axis).
 
 As example, below plots the depth (y-axis) against the repose data (x-axis) using the example LAS 'object' from the lastools data sets. 
 
 
-```{r, echo=TRUE, results='asis',fig.width=4, fig.height=6,fig.align="center"}
+```{r, echo=TRUE, results='asis',fig.width=8, fig.height=6,fig.align="center", message=FALSE, warning=FALSE}
 
 library(lastools)
 lastools::las_plot(lastools::example_las_obj)
 
-
-#$\sum_{i=1}^n X_i$
-
-#$$\sum_{i=1}^n X_i$$
-
 ```
 
-###Purpose/application
+### Purpose/application
 
 The data is typically used to characterize rock properties and has been used extensively to support the size and quantity of oil, gas, water and coal resources (@reeves). "The reasons given for running logs invariably include one or more of the following (@reeves):
 
@@ -98,13 +93,13 @@ The data is typically used to characterize rock properties and has been used ext
 
 **NB Reword the above - directly qouted from (@reeves)**
 
-###Measurements
+### Measurements
 
 Most common measurements (which are stored in a LAS file) comprise of: nuclear (e.g gamma ray, spectral gamma, gamma density), acoustic (e.g velocity) and electronic (e.g spontaneous potential, resistivity). In addition borehole geometry measurements such as the axis in three dimensions (verticality) and borehole diameter (especially needed for correction algorithms) may be recorded.  
 
-####Nuclear Measurments
+#### Nuclear Measurments
 
-#####Gammay Ray
+##### Gammay Ray
 
 Most Gamma ray tools record the total abundance of naturally occurring gamma radiation from the radioactive
 isotope of potassium, K40, and from isotopes in the decay chains of uranium 238
@@ -130,6 +125,6 @@ source and detectors are heavily shielded and collimated in order to ensure that
 emitted and detected gammas travel through formation materials, with a minimum
 of interaction with the borehole.
 
-#References
+# References
 
 
