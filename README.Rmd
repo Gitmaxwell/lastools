@@ -29,6 +29,15 @@ While the Canadian Well Logging Society provides free software called [LasApps](
 
 The aim of lastools is to provide functionality for reading and manipulating LAS files in the R environment and to provide additional unique functionality not found in existing alternative packages/libraries/software.
 
+##Installation
+
+lastools can be installed from github repository using devtools:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+devtools::install_github("Gitmaxwell/lastools")
+```
+
+
 ##LAS Data 
 
 ###Las file
