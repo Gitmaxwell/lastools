@@ -1,4 +1,5 @@
-\#\#About lastools
+About lastools
+--------------
 
 ‘lastools’ is an R package for reading and writing [version
 1.2](http://www.cwls.org/wp-content/uploads/2014/09/LAS12_Standards.txt)
@@ -32,13 +33,17 @@ manipulating LAS files in the R environment and to provide additional
 unique functionality not found in existing alternative
 packages/libraries/software.
 
-\#\#Installation
+Installation
+------------
 
 lastools can be installed from github repository using devtools:
 
-\#\#LAS Data
+devtools::install\_github(“Gitmaxwell/lastools”)
 
-\#\#\#Las file
+LAS Data
+--------
+
+### Las file
 
 A LAS file is a standardized, structured ASCII file containing header
 information and log curve data derived from the continuous collection of
@@ -73,7 +78,8 @@ elsewhere):
 [Las Standard
 3.0](http://www.cwls.org/wp-content/uploads/2014/09/LAS_3_File_Structure.pdf)
 
-\#\#References
+References
+----------
 
 Canadian Well Logging Society. 1990. “LAS 1.2 a Floppy Disk Standard for
 Log Data.” Connecticut, USA: Canadian Well Logging Society. 1990.
