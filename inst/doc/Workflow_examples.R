@@ -53,3 +53,7 @@ knitr::kable(head(lastools::example_las_obj$LOG, n=10),digits = 3,align = c("c")
 
 
 
+## ------------------------------------------------------------------------
+library(lastools)
+
+

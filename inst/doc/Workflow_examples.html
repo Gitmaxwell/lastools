@@ -12,7 +12,7 @@
 
 <meta name="author" content="Matthew Dick &amp; Kane Maxwell" />
 
-<meta name="date" content="2018-12-11" />
+<meta name="date" content="2018-12-12" />
 
 <title>Workflow_examples</title>
 
@@ -37,7 +37,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -278,7 +278,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Workflow_examples</h1>
 <h4 class="author"><em>Matthew Dick &amp; Kane Maxwell</em></h4>
-<h4 class="date"><em>2018-12-11</em></h4>
+<h4 class="date"><em>2018-12-12</em></h4>
 
 
 <div id="TOC">
@@ -293,6 +293,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <li><a href="#parameter-section">Parameter section</a></li>
 <li><a href="#log-section">Log section</a></li>
 </ul></li>
+<li><a href="#convertstandardize-las">Convert/standardize LAS</a></li>
 </ul></li>
 <li><a href="#references">References</a></li>
 </ul>
@@ -307,30 +308,30 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>The typical workflow for analyzing and manipulating data from a LAS file typically comprises of:</p>
 <ul>
 <li><p>Compile LAS files</p></li>
-<li><p>Check LAS file can be read to LAS Object</p></li>
 <li><p>Read LAS file/s to R</p></li>
 <li><p>Convert/standardize LAS</p></li>
-<li><p>Analyse Las data</p></li>
+<li><p>Analyse LAS data</p></li>
+<li><p>Re-write LAS object to LAS file or write LAS object data to tabular store</p></li>
 </ul>
 <div id="compile-las-files" class="section level2">
 <h2>Compile LAS files</h2>
 <p>It is common for a company to have many hundreds or thousands of LAS files across a disparate file structure. However, it may be more convenient (in order to perform analytics or for loading/writing LAS) to have LAS files stored in a single file location.</p>
 <p>As a first step the below examples how you might compile (copy) all “.las” files from a target directory to a nominated locaiton by creating a quick ‘compile’ function</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#source directory</span></a>
-<a class="sourceLine" id="cb1-2" title="2">s &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C:/&quot;</span>)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="co"># create a target directory on the file system called &quot;compiled_las&quot;</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co">#target directory</span></a>
-<a class="sourceLine" id="cb1-5" title="5">t &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C:/compiled_las&quot;</span>)</a>
-<a class="sourceLine" id="cb1-6" title="6"></a>
-<a class="sourceLine" id="cb1-7" title="7">las_compile &lt;-<span class="st">  </span><span class="cf">function</span> (s,t)</a>
-<a class="sourceLine" id="cb1-8" title="8">{</a>
-<a class="sourceLine" id="cb1-9" title="9"></a>
-<a class="sourceLine" id="cb1-10" title="10">  list.of.files &lt;-<span class="st"> </span><span class="kw">list.files</span>(s, <span class="dt">pattern =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">.las$&quot;</span>,<span class="dt">recursive =</span> <span class="ot">TRUE</span>, <span class="dt">full.names =</span> T)</a>
-<a class="sourceLine" id="cb1-11" title="11">  <span class="kw">file.copy</span>(list.of.files,t)</a>
-<a class="sourceLine" id="cb1-12" title="12">}</a>
-<a class="sourceLine" id="cb1-13" title="13"></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="co">#compile las takes .las files from the source directory and moves to the target directory</span></a>
-<a class="sourceLine" id="cb1-15" title="15"><span class="kw">las_compile</span>(s,t)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">#source directory</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">s &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C:/&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># create a target directory on the file system called &quot;compiled_las&quot;</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#target directory</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">t &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C:/compiled_las&quot;</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">las_compile &lt;-<span class="st">  </span><span class="cf">function</span> (s,t)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">{</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">  list.of.files &lt;-<span class="st"> </span><span class="kw">list.files</span>(s, <span class="dt">pattern =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">.las$&quot;</span>,<span class="dt">recursive =</span> <span class="ot">TRUE</span>, <span class="dt">full.names =</span> T)</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">  <span class="kw">file.copy</span>(list.of.files,t)</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">}</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#compile las takes .las files from the source directory and moves to the target directory</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">las_compile</span>(s,t)</a></code></pre></div>
 </div>
 <div id="read-las-files-to-r" class="section level2">
 <h2>Read LAS file/s to R</h2>
@@ -338,11 +339,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>Note that the majority of functions in lastools (convert, plot etc.) expect a LAS ‘object’, created from lastools::read_las.</p>
 <p>Also note that the ability to compile the curve data of &gt;10 LAS files direct to flat file format (R data.table) is a unique feature as compared to other (freely available) packages/software.</p>
 <p>To load a single LAS file to a LAS object is rudimentary. The function lastools::read_las simply expects a directory path to the LAS file of interest.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">lastools<span class="op">::</span><span class="kw">read_las</span>(<span class="st">&quot;filepath&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">lastools<span class="op">::</span><span class="kw">read_las</span>(<span class="st">&quot;filepath&quot;</span>)</a></code></pre></div>
 <p>Note that specified NULL values in the LAS file (usually some numeric value) are set to ‘NA’ by default; to keep NULL values simply use ‘replace_null =FALSE’.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">lastools<span class="op">::</span><span class="kw">read_las</span>(<span class="st">&quot;filepath&quot;</span>,<span class="dt">replace_null =</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">lastools<span class="op">::</span><span class="kw">read_las</span>(<span class="st">&quot;filepath&quot;</span>,<span class="dt">replace_null =</span><span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Loading LAS file LOG data to data.table is also rudimentary and supports bulk loading at a directory level (no need to nominate an exact file-path to a LAS file). This function will compile all LAS log data (.las files) into a long format data table by well/file. Due to the potential variety in NULL numeric values from differing LAS files, all NULL values are set to R NA value</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">lastools<span class="op">::</span><span class="kw">read_las_data_df</span>(<span class="st">&quot;directory&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">lastools<span class="op">::</span><span class="kw">read_las_data_df</span>(<span class="st">&quot;directory&quot;</span>)</a></code></pre></div>
 </div>
 <div id="las-object" class="section level2">
 <h2>LAS Object</h2>
@@ -643,6 +644,20 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tbody>
 </table>
 </div>
+</div>
+<div id="convertstandardize-las" class="section level2">
+<h2>Convert/standardize LAS</h2>
+<p>Once a LAS file is loaded to memory as a LAS object, a number of convinience functions are available to modify the LAS version and well information.</p>
+<p>These include:</p>
+<ul>
+<li><p>las_convert_v2()</p></li>
+<li><p>las_descending()</p></li>
+<li><p>las_remove_uwi()</p></li>
+<li><p>las_set_start_depth()</p></li>
+<li><p>las_trim_well_id()</p></li>
+</ul>
+<p>As an example, a common issue with LAS files from different vendors is inconsistant white space in the well id field and incosistancy in the order of depth increments (acending vs decending). In this case it might</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(lastools)</a></code></pre></div>
 </div>
 </div>
 <div id="references" class="section level1">

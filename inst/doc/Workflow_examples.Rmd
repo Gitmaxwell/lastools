@@ -26,13 +26,13 @@ The typical workflow for analyzing and manipulating data from a LAS file typical
 
 * Compile LAS files
 
-* Check LAS file can be read to LAS Object
-
 * Read LAS file/s to R
 
 * Convert/standardize LAS
 
-* Analyse Las data
+* Analyse LAS data
+
+* Re-write LAS object to LAS file or write LAS object data to tabular store   
 
 ## Compile LAS files
 
@@ -139,6 +139,30 @@ Contains the actual response data in flat file (wide) format. Column names are t
 library(lastools)
 knitr::kable(head(lastools::example_las_obj$LOG, n=10),digits = 3,align = c("c"), caption = "lastools::example_las_obj$LOG")
 
+
+```
+
+
+## Convert/standardize LAS
+
+Once a LAS file is loaded to memory as a LAS object, a number of convinience functions are available to modify the LAS version and well information.
+
+These include:
+
+* las_convert_v2()
+
+* las_descending()
+
+* las_remove_uwi()
+
+* las_set_start_depth()
+
+* las_trim_well_id()
+
+As an example, a common issue with LAS files from different vendors is inconsistant white space in the well id field and incosistancy in the order of depth increments (acending vs decending). In this case it might  
+
+```{r}
+library(lastools)
 
 ```
 

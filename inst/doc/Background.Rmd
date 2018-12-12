@@ -31,9 +31,8 @@ vignette: >
 
 * bulk loading to R data.table
 
-While the Canadian Well Logging Society provides free software called [LasApps](http://www.cwls.org/wp-content/uploads/2017/02/CWLS_LasApps_v2_4_14.msi) (@las_cws_front_page)  and a Python package called [lasio](http://pythonhosted.org/lasio/index.html) (@lasio) exists to perform similar functions; at time of writing no R package existed for reading and manipulating LAS files.
 
-The aim of lastools is to provide functionality for reading and manipulating LAS files in the R environment and to provide additional unique functionality not found in existing alternative packages/libraries/software.
+Although there are existing software which provide similar functionality (@las_cws_front_page, @lasio), at time of writing no R package existed for reading/writing and manipulating LAS files. The aim of lastools is to provide this functionality in the R environment and to provide additional unique functionality not found in existing alternative packages/libraries/software. 
 
 ## LAS Data 
 
@@ -91,39 +90,12 @@ The data is typically used to characterize rock properties and has been used ext
 
 * fluid salinity"
 
-**NB Reword the above - directly qouted from (@reeves)**
-
 ### Measurements
 
-Most common measurements (which are stored in a LAS file) comprise of: nuclear (e.g gamma ray, spectral gamma, gamma density), acoustic (e.g velocity) and electronic (e.g spontaneous potential, resistivity). In addition borehole geometry measurements such as the axis in three dimensions (verticality) and borehole diameter (especially needed for correction algorithms) may be recorded.  
+Most common measurements (which are stored in a LAS file) comprise of: nuclear (e.g gamma ray, spectral gamma, gamma density), acoustic (e.g velocity) and electronic (e.g spontaneous potential, resistivity). In addition, borehole geometry measurements such as the axis in three dimensions (verticality) and borehole diameter (especially needed for correction algorithms) may be recorded. 
 
-#### Nuclear Measurments
+@reeves provides comprehensive documentation these measurments and their application. 
 
-##### Gammay Ray
-
-Most Gamma ray tools record the total abundance of naturally occurring gamma radiation from the radioactive
-isotope of potassium, K40, and from isotopes in the decay chains of uranium 238
-and thorium 232. Sandstones,evaporites limestones and coals tend to have low abundance while high abundance is found in clay rich lithologie such as siltstones and shales.Gamma ray tools are generally calibrated to read in API units which are defined as 1/200th of the difference between the low and high
-activity zones in the American Petroleum Institute gamma pit at Houston.
-
-
-##### Spectral Gamma
-
-Spectral Gamma tools record not only the number of gamma rays, but also their
-energy. This allows the elemental concentrations of K, U and Th to be deduced.
-As with total spectrum gamma logs, the response over a particular sand/shale
-sequence may produce a characteristic signature that can help correlate the
-sequence between boreholes. The spectral gamma ray can, with other log data,
-help identify clay mineral types. It can also help differentiate uranium enriched
-permeable sandstones from potassium rich shales.
-
-##### Density Logs
-
-Modern compensated density tools comprise a gamma ray source (usually Cs 137)
-and two gamma detectors, typically about 0.15 m and 0.40 m from the source. Both
-source and detectors are heavily shielded and collimated in order to ensure that
-emitted and detected gammas travel through formation materials, with a minimum
-of interaction with the borehole.
 
 # References
 
