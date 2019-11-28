@@ -1,0 +1,7 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+lastools.Rcheck/
+lastools*.tar.gz
+lastools*.tgz

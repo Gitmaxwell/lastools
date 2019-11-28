@@ -19,6 +19,5 @@
 #' @source \url{www.Minnelusa.com}
 "example_las_obj"
 
-lastools::`las_convert_v2<-`() 
-
-las_convert_v2(x) <- TRUE
+#lastools::`las_convert_v2<-`() 
+#las_convert_v2(x) <- TRUE

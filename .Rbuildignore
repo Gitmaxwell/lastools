@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^lastools\.Rcheck$
+^lastools.*\.tar\.gz$
+^lastools.*\.tgz$
