@@ -4,7 +4,7 @@
 #' @param dir The Target Directory containing the .las files (required)
 #' @export
 #' @examples
-#' get_all_las_mnemonics(dir)
+#' read_las_mnemonics_df(".")
 
 
 read_las_mnemonics_df <- function(dir)
