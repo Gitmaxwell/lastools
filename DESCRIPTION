@@ -6,7 +6,8 @@ Version: 1.0.0
 Imports:
     ggplot2,
     stringr,
-    data.table
+    data.table,
+    reshape2
 Author: Matthew Dick & Kane Maxwell
 Maintainer: Matthew Dick <mgmdick@gmail.com>
 Description: Functions for reading and writing version 1.2 and 2.0 LAS files

@@ -8,7 +8,6 @@
 #'
 
 read_las_data_dtl <- function (dir) {
-  library(data.table)
   laslist <- list.files(dir, pattern = "\\.las$",recursive = TRUE,full.names = T)
   las_data <- lapply(laslist,function(x) try(.get_las_data_dt(x)))
   return(las_data)
@@ -17,7 +16,7 @@ read_las_data_dtl <- function (dir) {
 #function passes info into read_las_data_df
 .get_las_data_dt <- function(x)
 {
-  library(data.table)
+  requireNamespace(data.table)
   las <- lastools::read_las(x)
   filename <- x
 
