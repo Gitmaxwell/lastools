@@ -17,6 +17,7 @@ Description: Functions for reading and writing version 1.2 and 2.0 LAS files
 License: MIT + file LICENSE
 LazyData: TRUE
 Suggests:
-    knitr
+    knitr,
+    testthat
 VignetteBuilder: knitr
 RoxygenNote: 7.0.1
