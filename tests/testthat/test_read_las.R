@@ -8,6 +8,8 @@ test_that("read extdata/example.las and verify version is '2'", {
 test_that("test read v1.2 sample.las", {
   las = read_las(system.file("extdata", "1.2", "sample.las", package = "lastools"))
   expect_equal(las$VERSION, 1.2)
+  # First item in las$LOG$DEPT should be the same as the ~WELL STRT value.
+  expect_equal(las$LOG$DEPT[1], 1670)
 })
 
 test_that("test read v1.2 sample_curve_api.las has curve api data", {
