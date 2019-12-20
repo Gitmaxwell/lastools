@@ -125,7 +125,7 @@ read_las <- function(filepath, replace_null = T) {
   lines <- paste(lines, collapse = "\n")
   lines <- stringr::str_replace_all(lines, "-", " -")
 
-  return(data.table::fread(lines, header = T,showProgress = FALSE))
+  return(data.table::fread(lines, showProgress = FALSE))
   #added showProgress = FALSE to supress warnings - KM 14-Nov-2017
 }
 
