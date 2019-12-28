@@ -12,7 +12,7 @@ write_las <- function(las, path) {
   writeLines(las_string, path)
 }
 
-.las_section_to_string <- function(df, section) {
+.las_section_to_string <- function(df, section, ver="2.0") {
   # Convert a section block of LAS files to a string vector to ready to write back out as a .LAS file
   #
   # Takes a data.frame object from a LAS object (WELL, PARAM, CURVE) and converts it to a formatted table as #a string
@@ -23,13 +23,32 @@ write_las <- function(las, path) {
   # @export
   #
   if (is.null(df)) return("#")
+
+
+  if (ver == 1.2 & section == "~W") {
+    in_value_desc_order <- c("STRT", "STOP", "STEP", "NULL")
+
+    # If df[,1] (the mnemonic field) is a member of
+    # 'in_value_desc_order' then do nothing
+    # otherwise
+    # swap the value and description entries for v1.2 well format
+    ifelse (df[,1] %in% in_value_desc_order, "", {
+        tmp <- df[,3]
+        df[,3] <- df[,4]
+        df[,4] <- tmp
+      }
+    )
+  }
+
   df[,1] <- stringr::str_c(df[,1], ".", df[,2])
   df[,1] <- stringr::str_pad(df[,1], width = 10, side = "right")
   space_width = max(nchar(df[,2])) + max(nchar(df[,1])) + 15
   df[,3] <- stringr::str_pad(df[,3], width = space_width, side = "left")
   df[,3] <- stringr::str_c(df[,3], ":")
   df[,4] <- stringr::str_pad(df[,4], width = space_width, side = "left")
+
   df_out <- stringr::str_c(df[,1], df[,3], df[,4])
+
   first_line <- section
   second_line <- "#MNEM.UNIT          VALUE/NAME          DESCRIPTION"
   third_line <-  "#------------       ---------------     --------------------"
@@ -83,13 +102,13 @@ write_las <- function(las, path) {
   #
 
 
-  version_info = .las_version_to_string(las$VERSION)
-  well_info = .las_section_to_string(las$WELL, "~W")
-  curve_info = .las_section_to_string(las$CURVE, "~C")
-  param_info = .las_section_to_string(las$PARAM, "~P")
-  other_info = c("~O", las$OTHER)
-  data_out <- .las_data_to_string(las)
-  lines_out <- c(version_info, well_info, curve_info, param_info, other_info,"#", "#", data_out)
+  version_info <- .las_version_to_string(las$VERSION)
+  well_info    <- .las_section_to_string(las$WELL, "~W", las$VERSION)
+  curve_info   <- .las_section_to_string(las$CURVE, "~C", las$VERSION)
+  param_info   <- .las_section_to_string(las$PARAM, "~P", las$VERSION)
+  other_info   <- c("~O", las$OTHER)
+  data_out     <- .las_data_to_string(las)
+  lines_out    <- c(version_info, well_info, curve_info, param_info, other_info,"#", "#", data_out)
   return(lines_out)
 }
 

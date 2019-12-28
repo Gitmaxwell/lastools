@@ -31,7 +31,13 @@ read_las <- function(filepath, replace_null = T) {
   #Other data block is line is joined with new line characters
   other_data <- paste(lines[other_block_rows], collapse = '\n')
   #Call parsing of table lines over each table section, and paste together with DO CALL
-  well_data <- do.call(rbind, lapply(lines[well_block_rows], function(x) .las_parse_table_line(x, section = "~W")))
+
+  # Pass version for "~W" well section
+  # because v1.2 well section needs special processing
+  well_data <- do.call(rbind, lapply(lines[well_block_rows],
+      function(x) .las_parse_table_line(x, section = "~W", version = version))
+  )
+
   print(curve_block_rows)
   curve_data <- do.call(rbind, lapply(lines[curve_block_rows], function(x) .las_parse_table_line(x, section = "~C")))
   param_data <- do.call(rbind, lapply(lines[param_block_rows], function(x) .las_parse_table_line(x, section = "~P")))
@@ -100,7 +106,7 @@ read_las <- function(filepath, replace_null = T) {
 }
 
 
-.las_parse_table_line <- function(line, section) {
+.las_parse_table_line <- function(line, section, version="2.0") {
   first_dot <- stringr::str_locate(line, "\\.")[[1]]
   last_colon <- stringr::str_locate(line, ":")[[1]]
   spaces <- data.frame(stringr::str_locate_all(line, " ")[[1]])
@@ -110,9 +116,23 @@ read_las <- function(filepath, replace_null = T) {
   substr(line, space_after_dot, space_after_dot) <- ";"
   if (section %in% c("~W", "~P")) table_names <- c("MNEM", "UNIT", "VALUE", "DESCRIPTION")
   if (section == "~C") table_names <- c("MNEM", "UNIT", "API CODE", "DESCRIPTION")
-  line = stringr::str_split(line, ";")
+  line <- stringr::str_split(line, ";")
+
+  # Handle special case of v1.2 Well section field order
+  if (version == "1.2" & section %in% c("~W")) {
+    trim_line <- stringr::str_trim(line[[1]][1])
+    in_value_desc_order <- c("STRT", "STOP", "STEP", "NULL")
+
+    # Move 'value' and 'description' values to standard v2.0 order
+    if (! trim_line %in% in_value_desc_order) {
+      temp <- line[[1]][3]
+      line[[1]][3] <- line[[1]][4]
+      line[[1]][4] <- temp
+    }
+  }
+
   names(line[[1]]) <- table_names
-  df = data.frame(t(line[[1]]), stringsAsFactors = F)
+  df <- data.frame(t(line[[1]]), stringsAsFactors = F)
   colnames(df) <- stringr::str_trim(colnames(df))
   df[,1] <- stringr::str_trim(df[,1])
   df[,2] <- stringr::str_trim(df[,2])
@@ -128,5 +148,3 @@ read_las <- function(filepath, replace_null = T) {
   return(data.table::fread(lines, showProgress = FALSE))
   #added showProgress = FALSE to supress warnings - KM 14-Nov-2017
 }
-
-
