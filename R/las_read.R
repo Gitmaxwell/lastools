@@ -45,8 +45,9 @@ read_las <- function(filepath, replace_null = T) {
 
   #Convert data_block to a data.frame
   if (wrap) {
-    # If the 
+    # If 'wrap' is true then we need to parse multi-line data rows.
     data_block <- lines[data_block_rows]
+
     # Per spec, the number of ~A data fields must match the
     # number of Curve MNEN fields. We use this value to 
     # split the wrapped data in to the correct number of fields
