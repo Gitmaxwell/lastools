@@ -17,7 +17,7 @@ test_that("test read v1.2 sample.las", {
   test_path <- system.file("extdata", "1.2", las_file, package = "lastools")
   las <- read_las(test_path)
   expect_equal(las$VERSION, 1.2)
-  # First item in las$LOG$DEPT should be the same as the ~WELL STRT value.
+  # First value in las$LOG$DEPT should be the same as the ~WELL STRT value.
   expect_equal(las$LOG$DEPT[1], 1670)
 })
 
@@ -55,18 +55,18 @@ test_that("test read v1.2 sample_minimal.las log data starts at 635.0000", {
 })
 
 test_that("test read v1.2 sample_wrapped.las", {
-  skip(
-    "error message:
-    'names' attribute [36] must be the same length as the vector [7]
-    Warning message:
-    In data.table::fread(lines, header = T, showProgress = FALSE) :
-      Stopped early on line 8. Expected 7 fields but found 1.
-      Consider fill=TRUE and comment.char=.
-      First discarded non-empty line: <<909.875000>>"
-  )
   las_file <- "sample_wrapped.las"
   test_path <- system.file("extdata", "1.2", las_file, package = "lastools")
   las <- read_las(test_path)
+
+  expect_equal(las$LOG$DEPT[1], 910.000)
+
+  # las$LOG$DT[1] == -999.25 == this las file's 'NULL' value
+  expect_equal(typeof(las$LOG$DT[1]), "double")
+  expect_true(is.na(las$LOG$DT[1]))
+
+  # Verify the another row starts correctly
+  expect_equal(las$LOG$DEPT[5], 909.5)
 })
 
 test_that("test v1.2 sample_inf_uwi_leading_zero value is '05001095820000'", {
