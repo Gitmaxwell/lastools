@@ -23,6 +23,7 @@ read_las <- function(filepath, replace_null = T) {
   lines <- lines[!is.na(lines)]
   #print(lines[1:30])
   version <- .las_get_version(lines)
+  wrap <- .las_get_wrap(lines)
   well_block_rows <- .las_get_block_dims(lines, "~W")
   curve_block_rows <- .las_get_block_dims(lines, "~C")
   param_block_rows <- .las_get_block_dims(lines, "~P")
@@ -41,8 +42,25 @@ read_las <- function(filepath, replace_null = T) {
   print(curve_block_rows)
   curve_data <- do.call(rbind, lapply(lines[curve_block_rows], function(x) .las_parse_table_line(x, section = "~C")))
   param_data <- do.call(rbind, lapply(lines[param_block_rows], function(x) .las_parse_table_line(x, section = "~P")))
-  #Convert to a data.frame
-  log_data <- data.frame(.las_get_log_data(lines[data_block_rows]))
+
+  #Convert data_block to a data.frame
+  if (wrap) {
+    # If 'wrap' is true then we need to parse multi-line data rows.
+    data_block <- lines[data_block_rows]
+
+    # Per spec, the number of ~A data fields must match the
+    # number of Curve MNEN fields. We use this value to 
+    # split the wrapped data in to the correct number of fields
+    # per row.
+    number_of_data_fields <- length(curve_data$MNEM)
+
+    log_data <- data.frame(
+      .las_get_wrapped_log_data(data_block, number_of_data_fields)
+    )
+  } else {
+    log_data <- data.frame(.las_get_log_data(lines[data_block_rows]))
+  }
+
   #Replace null characters if required
   if (replace_null == T) {
     log_data[log_data == as.numeric(as.character(well_data$VALUE[stringr::str_detect(well_data$MNEM, "NULL")]))] <- NA
@@ -65,11 +83,16 @@ read_las <- function(filepath, replace_null = T) {
   return(out)
 }
 
-
 .las_get_version <- function(lines) {
   version_row <- which(stringr::str_detect(lines, "~V"))
   version = lines[version_row+1]
   if (stringr::str_detect(version, "1.2")) return(1.2) else return(2.0)
+}
+
+.las_get_wrap <- function(lines) {
+  version_row <- which(stringr::str_detect(lines, "~V"))
+  wrap = lines[version_row+2]
+  if (stringr::str_detect(wrap, "YES")) return(TRUE) else return(FALSE)
 }
 
 .las_get_block_dims <- function(lines, section) {
@@ -147,4 +170,30 @@ read_las <- function(filepath, replace_null = T) {
 
   return(data.table::fread(lines, showProgress = FALSE))
   #added showProgress = FALSE to supress warnings - KM 14-Nov-2017
+}
+
+.las_get_wrapped_log_data <- function(lines, number_of_data_fields) {
+  # get data without the first line which is the Section header string.
+  data_strs <- lines[2:length(lines)]
+
+  # Join all the wrapped data lines together.
+  # Note: they are character strings of numbers.
+  data_str <- paste(data_strs, sep=" ", collapse=" ")
+
+  # Reduce space delimiters to a single space delimiter per delimit.
+  mydata <- strsplit(data_str, "[[:space:]]+")[[1]]
+
+
+  # Calculate the number of rows based on the number of fields.
+  num_rows = length(mydata)/number_of_data_fields
+  dim(mydata) <- c(number_of_data_fields, num_rows)
+
+  # Build the datastring for sending to data.table.
+  newdatastr = ""
+  for (row_num in 1:num_rows) {
+    tmp <- paste(mydata[,row_num], sep=" ", collapse=" ")
+    newdatastr <- paste0(newdatastr, tmp, sep="\n")
+  }
+
+  return(data.table::fread(newdatastr, showProgress = FALSE, header=FALSE))
 }
