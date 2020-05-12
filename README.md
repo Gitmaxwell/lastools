@@ -38,7 +38,7 @@ Installation
 
 lastools can be installed from github repository using devtools:
 
-devtools::install\_github(“Gitmaxwell/lastools”)
+devtools::install\_github("Gitmaxwell/lastools")
 
 LAS Data
 --------
